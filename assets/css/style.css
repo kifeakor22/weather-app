@@ -37,3 +37,16 @@ h2, #form-heading {
 .weather-header {
     background-color: rgb(47, 77, 122) !important;
 }
+
+button {
+    height: 2.5rem;
+        width: 220px;
+        padding: 0 0.75rem;
+}
+
+hr {
+    display: block;
+    width: 220px;
+    background-color: rgb(47, 77, 122);
+   
+}
