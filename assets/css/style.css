@@ -9,6 +9,7 @@ button.search-button {
     padding: 0 0.75rem;
     margin-top: 10px;
     background-color: rgb(79, 145, 243);
+    background-image: linear-gradient(to top right, rgb(26, 26, 27), rgb(15, 143, 228));
 }
 
  .current{
@@ -21,6 +22,7 @@ h2, #form-heading {
 
 .card {
     background-color: rgb(21, 56, 94);
+    background-image: linear-gradient(to top right, rgb(26, 26, 27), rgb(15, 143, 228));
     color: white;
     top: 20px;
     margin: 5px;
@@ -36,12 +38,14 @@ h2, #form-heading {
 
 .weather-header {
     background-color: rgb(47, 77, 122) !important;
+    background-image: linear-gradient(to top right, rgb(26, 26, 27), rgb(15, 143, 228));
 }
 
 button {
     height: 2.5rem;
         width: 220px;
         padding: 0 0.75rem;
+        background-color: gray;
 }
 
 hr {
@@ -49,4 +53,8 @@ hr {
     width: 220px;
     background-color: rgb(47, 77, 122);
    
+}
+
+.hide {
+    display: none;
 }
