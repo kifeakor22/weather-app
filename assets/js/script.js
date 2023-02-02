@@ -1,4 +1,4 @@
-// `lat={lat}&lon={lon}&appid={API key}`
+let storedSearches = [];
 
 // get form input
 
@@ -61,6 +61,7 @@ let getWeatherData = function () {
                 var cardHumEl = $("<p>").addClass("card-text").text(`Humidity ${weatherData.list[i].main.humidity}%`)
                 cardEl.append(cardBodyEl,cardTitleEl,cardIconEl,cardTempEl,cardWindEl,cardHumEl)
                 $("#forecast-card").append(cardEl)
+                
             }
         })
     })
@@ -69,11 +70,28 @@ let getWeatherData = function () {
 
 $("#search-form").on("submit", function(event){
     event.preventDefault()
-    var weather = getWeatherData()
+     $("#history").empty()
+    var city = $("#search-input").val().trim() 
+    storedSearches.push(city)
+    localStorage.setItem("city",JSON.stringify(storedSearches))
+     getWeatherData()    
+     let cities = JSON.parse(localStorage.getItem("city"))
+     for(i=0; i<cities.length;i++){
+    var listEL = $("<ul>")
+    var cityBtEl = $("<button>").addClass("list-item").text(cities[i])
+    listEL.append(cityBtEl)
+    $("#history").append(listEL)
 
-    console.log(`weather data ${weather}`)
+}
+
+
       
 })
+
+let cities = JSON.parse(localStorage.getItem("city"))
+
+console.log(cities)
+
 
 
 

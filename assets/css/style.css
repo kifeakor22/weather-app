@@ -20,7 +20,7 @@ h2, #form-heading {
 }
 
 .card {
-    background-color: rgb(180, 180, 224);
+    background-color: rgb(21, 56, 94);
     color: white;
     top: 20px;
     margin: 5px;
@@ -35,5 +35,5 @@ h2, #form-heading {
 }
 
 .weather-header {
-    background-color: rgb(68, 138, 231) !important;
+    background-color: rgb(47, 77, 122) !important;
 }
