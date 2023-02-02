@@ -1,0 +1,39 @@
+input.weather-search {
+    height: 2.5rem;
+    padding: 0.5rem;
+}
+
+button.search-button {
+    height: 2.5rem;
+    width: 220px;
+    padding: 0 0.75rem;
+    margin-top: 10px;
+    background-color: rgb(79, 145, 243);
+}
+
+ .current{
+    border: 2px solid black;
+}
+
+h2, #form-heading {
+    font-weight: bolder;
+}
+
+.card {
+    background-color: rgb(180, 180, 224);
+    color: white;
+    top: 20px;
+    margin: 5px;
+    padding: 10px;
+    text-align: left;
+}
+
+#forecast-card {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+}
+
+.weather-header {
+    background-color: rgb(68, 138, 231) !important;
+}
