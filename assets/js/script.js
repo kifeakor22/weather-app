@@ -1,16 +1,18 @@
-let storedSearches = [];
+
+ let storedSearches = []
 
 // get form input
 
 let getWeatherData = function () {  
     // use Geocoding to conver city name to coordinates 
     var cityName =$("#search-input").val().trim()  // get input and trim the data 
-    let querURL = `http://api.openweathermap.org/geo/1.0/direct?`  // geocordinates api base url
-    // build queryparam object for geocordinates API that takes city name and get cordinates 
-    let queryParam = {"q": cityName}
-    queryParam.limit = 1,
-    queryParam.appid ="615905d8dd21c6c52a00c4cf33d5ef94"
-    var query = querURL + $.param(queryParam) // generate query url that ajax will use using param()
+    if(cityName){
+         let querURL = `http://api.openweathermap.org/geo/1.0/direct?`  // geocordinates api base url
+         // build queryparam object for geocordinates API that takes city name and get cordinates 
+         let queryParam = {"q": cityName}
+         queryParam.limit = 1,
+         queryParam.appid ="615905d8dd21c6c52a00c4cf33d5ef94"
+         var query = querURL + $.param(queryParam) // generate query url that ajax will use using param()
     // use ajax to get cordinates
      $.ajax ({
         url: query,
@@ -24,6 +26,7 @@ let getWeatherData = function () {
         "appid": queryParam.appid}
         weatherQueryUrl = weatherUrl + $.param(weatherUrlParam) // put the url together 
        // use ajax to get weather data for city input
+       console.log(weatherQueryUrl)
         $.ajax({
             url: weatherQueryUrl,
             method: "GET"
@@ -63,36 +66,51 @@ let getWeatherData = function () {
                 cardEl.append(cardBodyEl,cardTitleEl,cardIconEl,cardTempEl,cardWindEl,cardHumEl)
                 $("#forecast-card").append(cardEl)
                 
+                
             }
         })
     })
 
+} else {
+    alert("please enter a city name")
+}
+    }
+ 
+    
+let appendSearchHistory = function (city) {
+     storedSearches.push(city)
+    localStorage.setItem("city",JSON.stringify(storedSearches))
+
+}   
+
+let renderHistory = function() {
+    let cities = JSON.parse(localStorage.getItem("city"))
+        for(i=0; i<cities.length;i++){
+             var listEL = $("<ul>")
+             var cityBtEl = $("<button>").addClass("list-item").text(cities[i])
+             cityBtEl.attr("data-name", cities[i])
+             listEL.append(cityBtEl)
+             $("#history").append(listEL)
+            }
 }
 
 $("#search-form").on("submit", function(event){
     event.preventDefault()
      $("#history").empty()
     var city = $("#search-input").val().trim() 
-    storedSearches.push(city)
-    localStorage.setItem("city",JSON.stringify(storedSearches))
-     getWeatherData()  
-     $("#search-input").val("")  
-     let cities = JSON.parse(localStorage.getItem("city"))
-     for(i=0; i<cities.length;i++){
-    var listEL = $("<ul>")
-
-    var cityBtEl = $("<button>").addClass("list-item").text(cities[i])
-     cityBtEl.attr("data-name", cities[i])
-    listEL.append(cityBtEl)
-    $("#history").append(listEL)
-
-}
+    if(city) {
+       appendSearchHistory(city)
+        getWeatherData()  
+        $("#search-input").val("")
+        renderHistory()  
+        } else{
+            alert("pleae enter city")
+        }
+    }
+)
 
 
-      
-})
 
-let cities = JSON.parse(localStorage.getItem("city"))
 
   $(document).on("click", ".list-item", function(event){
     event.preventDefault()
@@ -137,11 +155,6 @@ let cities = JSON.parse(localStorage.getItem("city"))
             $("#title-head").empty()
             $("#forecast-card").empty()
             $("#title-head").append(forcastHeader)
-    // 5 days  future weather  forcast for the city card shold have 
-     // The date 
-     // an icon reping weather condition 
-     // Temperature
-     // Humidity 
             for(let i=1; i< weatherData.list.length;i+=8) { 
                 console.log(weatherData.list[i])
                 var cardEl = $("<div>").addClass("card")
@@ -164,26 +177,16 @@ let cities = JSON.parse(localStorage.getItem("city"))
     
   );
 
+
+  let intialiseLocalStorage = function () {
+    // storedSearches = JSON.parse(localStorage.getItem("city"))
+    renderHistory()
+  }
+
+  intialiseLocalStorage()
   
 
-
-
-
-// http://api.openweathermap.org/geo/1.0/direct?q={city name},{state code},{country code}&limit={limit}&appid={API key}
-
-
-// add that city to the search history 
-
-
-// user current view should have 
-  // city name (The date) and An Icon rep of weather conditions
-  // the temperature of current city 
-  // The humidity 
-  // the wind speed 
-
-
-
  
- // search history 
 
-     // should render current and future conditions for that city 
+
+

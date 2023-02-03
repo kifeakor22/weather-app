@@ -30,6 +30,11 @@ h2, #form-heading {
     text-align: left;
 }
 
+.card:hover{
+    transform: scale(1.1);
+    box-shadow: 0 0 10px rgb(21, 56, 94);
+}
+
 #forecast-card {
     display: flex;
     flex-direction: row;
