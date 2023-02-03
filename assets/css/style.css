@@ -12,10 +12,13 @@ button.search-button {
     background-image: linear-gradient(to top right, rgb(26, 26, 27), rgb(15, 143, 228));
 }
 
- .current{
-    border: 2px solid black;
+ .current{ 
+    box-shadow: 0 0 10px rgb(21, 56, 94);
 }
 
+.current:hover {
+    transform: scale(1.1);
+}
 h2, #form-heading {
     font-weight: bolder;
 }
@@ -51,6 +54,12 @@ button {
         width: 220px;
         padding: 0 0.75rem;
         background-color: gray;
+}
+
+button:hover {
+    transform: scale(1.1);
+    background-color: rgb(21, 56, 94);
+    background-image: linear-gradient(to top right, rgb(26, 26, 27), rgb(15, 143, 228));
 }
 
 hr {
