@@ -45,7 +45,8 @@ let getWeatherData = function (city) {
                 $("#forecast-card").empty()
                 $("#title-head").append(forcastHeader)
     // 5 days  future weather  forcast for the city rendered as cards 
-            for(let i=1; i< weatherData.list.length;i+=8) { 
+            for(let i=4; i< weatherData.list.length;i+=8) { 
+                var cardDesEl= $("<p>").text(`Conditions: ${weatherData.list[0].weather[0].description}`)
                 var cardEl = $("<div>").addClass("card col-lg-2 col-md-2 col-sm-12")
                 var cardBodyEl = $("<div>").addClass("card-body")
                 var cardTitleEl = $("<h5>").addClass("card-title").text(moment(weatherData.list[i].dt_txt).format("dddd Do"))
@@ -55,7 +56,7 @@ let getWeatherData = function (city) {
                 var cardTempEl = $("<p>").addClass("card-text").text(`Temp: ${cardTempC.toFixed(2)} °C`)
                 var cardWindEl = $("<p>").addClass("card-text").text(`Wind ${weatherData.list[i].wind.speed} KPH`)
                 var cardHumEl = $("<p>").addClass("card-text").text(`Humidity ${weatherData.list[i].main.humidity}%`)
-                cardEl.append(cardBodyEl,cardTitleEl,cardIconEl,cardTempEl,cardWindEl,cardHumEl)
+                cardEl.append(cardBodyEl,cardTitleEl,cardDesEl,cardIconEl,cardTempEl,cardWindEl,cardHumEl)
                 $("#forecast-card").append(cardEl)}
              })
             })
@@ -81,7 +82,7 @@ let renderHistory = function() {
             }
         }
 
-// add on submit event on search form to run required functions 
+// add on submit event on search form to run required functions when a user hits enter or submit button
 $("#search-form").on("submit", function(event){
     event.preventDefault() // prevent default 
      $("#history").empty() //Empty history 
@@ -99,18 +100,16 @@ $("#search-form").on("submit", function(event){
 // add on click event to any DOM element that belongs to the list-item class (only search history items belong top this class)
 $(document).on("click", ".list-item", function(event){
     event.preventDefault()
-    // use Geocoding to conver city name to coordinates 
     var city =$(this).data("name") // get the city name by its data-name attribute
     getWeatherData(city) // then run the getWeatherData function using that city name to get weather data 
   });
 
 
 let intialiseLocalStorage = function () {
-    // storedSearches = JSON.parse(localStorage.getItem("city"))
-    renderHistory()
-  }
+    renderHistory()// storedSearches = JSON.parse(localStorage.getItem("city")) 
+}
 
-  intialiseLocalStorage()
+intialiseLocalStorage()
   
 
  
