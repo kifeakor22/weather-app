@@ -4,6 +4,7 @@ input.weather-search {
 }
 
 button.search-button {
+    color: white;
     height: 2.5rem;
     width: 220px;
     padding: 0 0.75rem;
@@ -12,8 +13,14 @@ button.search-button {
     background-image: linear-gradient(to top right, rgb(26, 26, 27), rgb(15, 143, 228));
 }
 
+.list-item {
+    color: white;
+}
+
  .current{ 
-    box-shadow: 0 0 10px rgb(21, 56, 94);
+    box-shadow: 0 0 10px black;
+    color: white;
+    font-weight: bolder;
 }
 
 .current:hover {
@@ -21,6 +28,7 @@ button.search-button {
 }
 h2, #form-heading {
     font-weight: bolder;
+    color: white;
 }
 
 .card {
@@ -31,6 +39,16 @@ h2, #form-heading {
     margin: 20px;
     padding: 10px;
     text-align: left;
+    width: max-content;
+  
+
+}
+body {
+    background-image: url("../images/test.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+
 }
 
 .card:hover{

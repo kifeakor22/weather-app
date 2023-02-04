@@ -32,14 +32,15 @@ let getWeatherData = function (city) {
                 var iconId = weatherData.list[0].weather[0].icon
                 var iconImgEl = $("<img>").attr("src", `${iconUrl}${iconId}.png`)
                 var tempC = weatherData.list[0].main.temp - 273.15
+                var descripEl = $("<p>").text(`Conditions: ${weatherData.list[0].weather[0].description}`)
                 var tempEl = $("<p>").text(`Temp: ${tempC.toFixed(2)} °C`) 
                 var windEl =$("<p>").text(`Wind ${weatherData.list[0].wind.speed} KPH`)
                 var humEl = $("<p>").text(`Humidity ${weatherData.list[0].main.humidity}%`)
                 var cityEl =$("<h2>").text(`${weatherData.city.name} (${moment(weatherData.list.dt).format("dddd, MMMM Do YY, h:mm a")})`)
-                cityEl.append(iconImgEl)
-                $("#today").append(cityEl,tempEl,windEl,humEl)
+                descripEl.append(iconImgEl)
+                $("#today").append(cityEl,descripEl,tempEl,windEl,humEl)
                 $("#today").removeClass("hide")
-                var forcastHeader = $("<h2>").text(`5-Day Forcast:`)
+                var forcastHeader = $("<h2>").text(`5-Day Forecast:`)
                 $("#title-head").empty()
                 $("#forecast-card").empty()
                 $("#title-head").append(forcastHeader)
@@ -47,7 +48,7 @@ let getWeatherData = function (city) {
             for(let i=1; i< weatherData.list.length;i+=8) { 
                 var cardEl = $("<div>").addClass("card")
                 var cardBodyEl = $("<div>").addClass("card-body")
-                var cardTitleEl = $("<h5>").addClass("card-title").text(moment(weatherData.list[i].dt_txt).format("dddd"))
+                var cardTitleEl = $("<h5>").addClass("card-title").text(moment(weatherData.list[i].dt_txt).format("dddd Do"))
                 var cardIconId = weatherData.list[i].weather[0].icon
                 var cardIconEl = $("<img>").addClass("card-text").attr("src", `${iconUrl}${cardIconId}.png`)
                 var cardTempC = weatherData.list[i].main.temp - 273.15
