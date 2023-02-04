@@ -24,6 +24,8 @@ button.search-button {
     display: flex;
     flex-direction: column;
     height: auto;
+    
+
 }
 
 .current:hover {
@@ -108,8 +110,9 @@ hr {
         height: 350px;
     }
     .current {
-        color: rgb(15, 15, 15);
+        color: white;
         padding: 10px;
+        background-color: rgb(21, 22, 90);
     }
     
 }

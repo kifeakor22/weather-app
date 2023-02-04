@@ -11,17 +11,23 @@ let getWeatherData = function (city) {
          queryParam.appid ="615905d8dd21c6c52a00c4cf33d5ef94"
          var query = querURL + $.param(queryParam) // generate query url that ajax will use using param()
          // use ajax to get cordinates
+         console.log(query)
          $.ajax ({
             url: query,
             method: "Get"
         }).then(function(response){
-            var cityLat = response[0].lat.toFixed(5) 
-            var cityLon = response[0].lon.toFixed(5)
-            var weatherUrl = `https://api.openweathermap.org/data/2.5/forecast?`  // base url for openweather 5 days forecast
-            var weatherUrlParam = {"lat": cityLat,     // build params as an object for 5days openweather API url
-            "lon":cityLon,
-            "appid": queryParam.appid}
-            weatherQueryUrl = weatherUrl + $.param(weatherUrlParam) // put the url together 
+            if(!response || response.length === 0){
+                alert("please enter a Valid city name")
+            }else {
+                console.log(response[0].lat)
+                var cityLat = response[0].lat.toFixed(5) 
+                var cityLon = response[0].lon.toFixed(5)
+                var weatherUrl = `https://api.openweathermap.org/data/2.5/forecast?`  // base url for openweather 5 days forecast
+                var weatherUrlParam = {"lat": cityLat,     // build params as an object for 5days openweather API url
+                "lon":cityLon,
+                "appid": queryParam.appid}
+                 weatherQueryUrl = weatherUrl + $.param(weatherUrlParam) 
+            }// put the url together 
             // use ajax to get weather data for city input
             $.ajax({
                 url: weatherQueryUrl,
@@ -87,14 +93,21 @@ $("#search-form").on("submit", function(event){
     event.preventDefault() // prevent default 
      $("#history").empty() //Empty history 
     var city = $("#search-input").val().trim() // get city name which is required to run the getWeatherData function
-    if(city) {
-       appendSearchHistory(city) 
-       getWeatherData(city)  
-        $("#search-input").val("") // empty input field
-        renderHistory() // disply search history 
-    } else{
-        alert("pleae enter city")
-    }
+    $.ajax({ // make an api call just to check if city is valid or not 
+        url: `http://api.openweathermap.org/geo/1.0/direct?q=${city}&limit=1&appid=615905d8dd21c6c52a00c4cf33d5ef94`,
+        method:"GET"
+    }).then(function(response){
+        // if response is empty due to city not being valid 
+        if(!response || response.length === 0){
+            renderHistory()
+            alert("please enter a valid city")
+        }else {
+            appendSearchHistory(city) 
+            getWeatherData(city)  
+            $("#search-input").val("") // empty input field
+            renderHistory() // disply search history
+        }}
+    )
 })
 
 // add on click event to any DOM element that belongs to the list-item class (only search history items belong top this class)
