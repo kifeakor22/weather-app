@@ -36,7 +36,7 @@ When a user clicks on a city in the search history they are again presented with
 This site is deployed using [GitHub Pages](https://pages.github.com/)
 at https://kifeakor22.github.io/weather-app/
 
-![site](./assets/images/weather.PNG)
+![site](./assets/images/projectPic.PNG)
 
 
 ## Features

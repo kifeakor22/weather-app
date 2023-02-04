@@ -21,6 +21,9 @@ button.search-button {
     box-shadow: 0 0 10px black;
     color: white;
     font-weight: bolder;
+    display: flex;
+    flex-direction: column;
+    height: auto;
 }
 
 .current:hover {
@@ -40,6 +43,7 @@ h2, #form-heading {
     padding: 10px;
     text-align: left;
     width: max-content;
+    margin-right: 10px;
   
 
 }
@@ -89,4 +93,23 @@ hr {
 
 .hide {
     display: none;
+}
+
+@media screen and (max-width: 500px) {
+    #forecast-card {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        
+    }
+    .card {
+        width: 250px;
+        height: 350px;
+    }
+    .current {
+        color: rgb(15, 15, 15);
+        padding: 10px;
+    }
+    
 }

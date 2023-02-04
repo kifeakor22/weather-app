@@ -46,7 +46,7 @@ let getWeatherData = function (city) {
                 $("#title-head").append(forcastHeader)
     // 5 days  future weather  forcast for the city rendered as cards 
             for(let i=1; i< weatherData.list.length;i+=8) { 
-                var cardEl = $("<div>").addClass("card")
+                var cardEl = $("<div>").addClass("card col-lg-2 col-md-2 col-sm-12")
                 var cardBodyEl = $("<div>").addClass("card-body")
                 var cardTitleEl = $("<h5>").addClass("card-title").text(moment(weatherData.list[i].dt_txt).format("dddd Do"))
                 var cardIconId = weatherData.list[i].weather[0].icon
