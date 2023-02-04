@@ -42,7 +42,7 @@ let getWeatherData = function (city) {
                 var tempEl = $("<p>").text(`Temp: ${tempC.toFixed(2)} °C`) 
                 var windEl =$("<p>").text(`Wind ${weatherData.list[0].wind.speed} KPH`)
                 var humEl = $("<p>").text(`Humidity ${weatherData.list[0].main.humidity}%`)
-                var cityEl =$("<h2>").text(`${weatherData.city.name} (${moment(weatherData.list.dt).format("dddd, MMMM Do YY, h:mm a")})`)
+                var cityEl =$("<h2>").text(`${weatherData.city.name} (${moment(weatherData.list.dt).format("dddd, MMMM Do YYYY, h:mm a")})`)
                 descripEl.append(iconImgEl)
                 $("#today").append(cityEl,descripEl,tempEl,windEl,humEl)
                 $("#today").removeClass("hide")
@@ -97,7 +97,7 @@ $("#search-form").on("submit", function(event){
         url: `http://api.openweathermap.org/geo/1.0/direct?q=${city}&limit=1&appid=615905d8dd21c6c52a00c4cf33d5ef94`,
         method:"GET"
     }).then(function(response){
-        // if response is empty due to city not being valid 
+        // if response is empty due to city not
         if(!response || response.length === 0){
             renderHistory()
             alert("please enter a valid city")
