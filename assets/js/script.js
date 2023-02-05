@@ -7,7 +7,7 @@ let getWeatherData = function (city) {
     // use Geocoding to convert city name to coordinates 
     var cityName = city
     if(cityName){
-         let querURL = `http://api.openweathermap.org/geo/1.0/direct?`  // geocordinates api base url
+         let querURL = `https://api.openweathermap.org/geo/1.0/direct?`  // geocordinates api base url
          // build queryparam object for geocordinates API that takes city name and get cordinates 
          let queryParam = {"q": cityName}
          queryParam.limit = 1,
@@ -36,7 +36,7 @@ let getWeatherData = function (city) {
                 method: "GET"
             }).then(function(weatherData){
                 $("#today").empty() // empty current weather div
-                var iconUrl = `http://openweathermap.org/img/w/`  // url for open weather API icons
+                var iconUrl = `https://openweathermap.org/img/w/`  // url for open weather API icons
                 var iconId = weatherData.list[0].weather[0].icon
                 var iconImgEl = $("<img>").attr("src", `${iconUrl}${iconId}.png`)
                 var tempC = weatherData.list[0].main.temp - 273.15
@@ -96,7 +96,7 @@ $("#search-form").on("submit", function(event){
      $("#history").empty() //Empty history 
     var city = $("#search-input").val().trim() // get city name which is required to run the getWeatherData function
     $.ajax({ // make an api call just to check if city is valid or not 
-        url: `http://api.openweathermap.org/geo/1.0/direct?q=${city}&limit=1&appid=615905d8dd21c6c52a00c4cf33d5ef94`,
+        url: `https://api.openweathermap.org/geo/1.0/direct?q=${city}&limit=1&appid=615905d8dd21c6c52a00c4cf33d5ef94`,
         method:"GET"
     }).then(function(response){
         // if response is empty due to city not
