@@ -1,4 +1,7 @@
-let storedSearches = []
+         
+const key = "615905d8dd21c6c52a00c4cf33d5ef94"
+
+storedSearches = []
 // function to get weather data given city name
 let getWeatherData = function (city) {  
     // use Geocoding to convert city name to coordinates 
@@ -8,7 +11,7 @@ let getWeatherData = function (city) {
          // build queryparam object for geocordinates API that takes city name and get cordinates 
          let queryParam = {"q": cityName}
          queryParam.limit = 1,
-         queryParam.appid ="615905d8dd21c6c52a00c4cf33d5ef94"
+         queryParam.appid = key
          var query = querURL + $.param(queryParam) // generate query url that ajax will use using param()
          // use ajax to get cordinates
          $.ajax ({
@@ -118,7 +121,8 @@ $(document).on("click", ".list-item", function(event){
 
 
 let intialiseLocalStorage = function () {
-    renderHistory()// storedSearches = JSON.parse(localStorage.getItem("city")) 
+    renderHistory()
+    // storedSearches = JSON.parse(localStorage.getItem("city")) 
 }
 
 intialiseLocalStorage()
