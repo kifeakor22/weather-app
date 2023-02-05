@@ -1,8 +1,8 @@
 let storedSearches = []
 // function to get weather data given city name
 let getWeatherData = function (city) {  
-    // use Geocoding to conver city name to coordinates 
-    var cityName = city  // get input and trim the data 
+    // use Geocoding to convert city name to coordinates 
+    var cityName = city
     if(cityName){
          let querURL = `http://api.openweathermap.org/geo/1.0/direct?`  // geocordinates api base url
          // build queryparam object for geocordinates API that takes city name and get cordinates 
@@ -11,13 +11,12 @@ let getWeatherData = function (city) {
          queryParam.appid ="615905d8dd21c6c52a00c4cf33d5ef94"
          var query = querURL + $.param(queryParam) // generate query url that ajax will use using param()
          // use ajax to get cordinates
-         console.log(query)
          $.ajax ({
             url: query,
             method: "Get"
         }).then(function(response){
             if(!response || response.length === 0){
-                alert("please enter a Valid city name")
+                alert("please enter a Valid City name")
             }else {
                 console.log(response[0].lat)
                 var cityLat = response[0].lat.toFixed(5) 
@@ -42,7 +41,7 @@ let getWeatherData = function (city) {
                 var tempEl = $("<p>").text(`Temp: ${tempC.toFixed(2)} °C`) 
                 var windEl =$("<p>").text(`Wind ${weatherData.list[0].wind.speed} KPH`)
                 var humEl = $("<p>").text(`Humidity ${weatherData.list[0].main.humidity}%`)
-                var cityEl =$("<h2>").text(`${weatherData.city.name} (${moment(weatherData.list.dt).format("dddd, MMMM Do YYYY, h:mm a")})`)
+                var cityEl =$("<h2>").text(`${response[0].name} (${moment(weatherData.list.dt).format("dddd, MMMM Do YYYY, h:mm a")})`)
                 descripEl.append(iconImgEl)
                 $("#today").append(cityEl,descripEl,tempEl,windEl,humEl)
                 $("#today").removeClass("hide")
@@ -125,7 +124,9 @@ let intialiseLocalStorage = function () {
 intialiseLocalStorage()
   
 
- 
+
+
+
 
 
 
