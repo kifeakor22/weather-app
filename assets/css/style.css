@@ -89,7 +89,7 @@ button:hover {
 hr {
     display: block;
     width: 220px;
-    background-color: rgb(47, 77, 122);
+    background-color: rgb(189, 202, 221);
    
 }
 
@@ -97,7 +97,7 @@ hr {
     display: none;
 }
 
-@media screen and (max-width: 500px) {
+@media screen and (max-width: 800px) {
     #forecast-card {
         display: flex;
         flex-direction: column;
