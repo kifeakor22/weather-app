@@ -41,7 +41,7 @@ let getWeatherData = function (city) {
                 var iconImgEl = $("<img>").attr("src", `${iconUrl}${iconId}.png`)
                 var tempC = weatherData.list[0].main.temp - 273.15
                 var descripEl = $("<p>").text(`Conditions: ${weatherData.list[0].weather[0].description}`)
-                var tempEl = $("<p>").text(`Temp: ${tempC.toFixed(2)} °C`) 
+                var tempEl = $("<p>").text(`Temp: ${tempC.toFixed(0)} °C`) 
                 var windEl =$("<p>").text(`Wind ${weatherData.list[0].wind.speed} KPH`)
                 var humEl = $("<p>").text(`Humidity ${weatherData.list[0].main.humidity}%`)
                 var cityEl =$("<h2>").text(`${response[0].name} (${moment(weatherData.list.dt).format("dddd, MMMM Do YYYY, h:mm a")})`)
@@ -61,7 +61,7 @@ let getWeatherData = function (city) {
                 var cardIconId = weatherData.list[i].weather[0].icon
                 var cardIconEl = $("<img>").addClass("card-text").attr("src", `${iconUrl}${cardIconId}.png`)
                 var cardTempC = weatherData.list[i].main.temp - 273.15
-                var cardTempEl = $("<p>").addClass("card-text").text(`Temp: ${cardTempC.toFixed(2)} °C`)
+                var cardTempEl = $("<p>").addClass("card-text").text(`Temp: ${cardTempC.toFixed(0)} °C`)
                 var cardWindEl = $("<p>").addClass("card-text").text(`Wind ${weatherData.list[i].wind.speed} KPH`)
                 var cardHumEl = $("<p>").addClass("card-text").text(`Humidity ${weatherData.list[i].main.humidity}%`)
                 cardEl.append(cardBodyEl,cardTitleEl,cardDesEl,cardIconEl,cardTempEl,cardWindEl,cardHumEl)
